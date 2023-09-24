@@ -11,7 +11,7 @@ import SwiftUI
 struct AccessibilityTestingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DynamicTextView()
         }
     }
 }
