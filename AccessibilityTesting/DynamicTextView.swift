@@ -44,7 +44,7 @@ extension DynamicTypeSize {
         case .large, .xLarge, .xxLarge, .xxxLarge:
             return 0.8
         default:
-            return 0.6
+            return 0.85
         }
     }
 }
