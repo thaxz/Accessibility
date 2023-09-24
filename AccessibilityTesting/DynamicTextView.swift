@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DynamicTextView: View {
+    
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    
     var body: some View {
         NavigationStack {
             List {
@@ -21,11 +24,28 @@ struct DynamicTextView: View {
                         }
                         Text("And this is a longer text that can expand to multiple lines :)")
                             .font(.subheadline)
+                            .lineLimit(4)
+                            .minimumScaleFactor(dynamicTypeSize.customMinScaleFactor)
                     }
                 }
             }
         }
 
+    }
+}
+
+
+
+extension DynamicTypeSize {
+    var customMinScaleFactor: CGFloat {
+        switch self {
+        case .xSmall, .small, .medium:
+            return 1.0
+        case .large, .xLarge, .xxLarge, .xxxLarge:
+            return 0.8
+        default:
+            return 0.6
+        }
     }
 }
 
