@@ -19,12 +19,20 @@ struct VoiceOverView: View {
                     HStack{
                         Text("Volume")
                         Spacer()
+                        // Since its a custom "toggle", its not gruped by default, leading to confuse voiceover
                         Text(isActive ? "ON" : "OFF")
                     }
                     .background(Color.black.opacity(0.001))
                     .onTapGesture {
                         isActive.toggle()
                     }
+                    //to be read as a group by voiceover
+                    .accessibilityElement(children: .combine)
+                    // reading as a button
+                    .accessibilityAddTraits(.isButton)
+                    // voiceover is gonna read this
+                    .accessibilityHint("Double tap to toggle setting.")
+                    
                 } header: {
                     Text("Preferences".uppercased())
                 }
