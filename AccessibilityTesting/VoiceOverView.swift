@@ -64,18 +64,25 @@ struct VoiceOverView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.secondary)
                         .font(.caption)
+                        .accessibilityAddTraits(.isHeader)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8){
                             ForEach(0..<10){ index in
-                                Image("taylorImage")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 100, height: 100)
-                                    .cornerRadius(10)
-                                Text("Item \(index)")
-                            }
-                            .onTapGesture {
-                                
+                                VStack{
+                                    Image("taylorImage")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(10)
+                                    Text("Item \(index)")
+                                }
+                                .onTapGesture {
+                                    
+                                }
+                                .accessibilityElement(children: .combine)
+                                .accessibilityLabel("Item \(index) is a image of Taylor Swift")
+                                .accessibilityAddTraits(.isButton)
+                                .accessibilityHint("Double tap to open")
                             }
                         }
                     }
