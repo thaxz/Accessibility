@@ -21,6 +21,7 @@ struct VoiceOverView: View {
                         Spacer()
                         // Since its a custom "toggle", its not gruped by default, leading to confuse voiceover
                         Text(isActive ? "ON" : "OFF")
+                            .accessibilityHidden(true)
                     }
                     .background(Color.black.opacity(0.001))
                     .onTapGesture {
@@ -31,7 +32,11 @@ struct VoiceOverView: View {
                     // reading as a button
                     .accessibilityAddTraits(.isButton)
                     // voiceover is gonna read this
+                    .accessibilityValue(isActive ? "is on" : "is off")
                     .accessibilityHint("Double tap to toggle setting.")
+                    .accessibilityAction {
+                        isActive.toggle()
+                    }
                     
                 } header: {
                     Text("Preferences".uppercased())
@@ -45,7 +50,9 @@ struct VoiceOverView: View {
                     } label: {
                         Image(systemName: "heart.fill")
                     }
+                    .accessibilityLabel("Favorites")
                     Text("Favorites")
+                        .accessibilityAddTraits(.isButton)
                         .onTapGesture {
                             
                         }
